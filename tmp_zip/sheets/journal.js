@@ -1,0 +1,8 @@
+export default class WildseaJournalSheet extends (foundry.appv1?.sheets?.JournalSheet ?? JournalSheet) {
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      width: 1100,
+      height: 850,
+    })
+  }
+}

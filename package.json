@@ -1,0 +1,7 @@
+{
+  "name": "wildsea",
+  "version": "1.0.0",
+  "scripts": {
+    "build:zip": "powershell -Command \"Compress-Archive -Path .\\system\\* -DestinationPath .\\wildsea-v14.zip -Force\""
+  }
+}
