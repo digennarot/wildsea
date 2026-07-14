@@ -1,0 +1,16 @@
+{
+  "Actor": {
+    "types": ["player", "ship", "hazard"]
+  },
+  "Item": {
+    "types": [
+      "aspect",
+      "attribute",
+      "design",
+      "fitting",
+      "resource",
+      "temporaryTrack",
+      "undercrew"
+    ]
+  }
+}
