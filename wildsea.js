@@ -58,10 +58,11 @@ Hooks.once('init', () => {
     undercrew: UndercrewModel
   }
 
+  // Unregister core sheet and register custom sheets as defaults for each actor type
   foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet)
-  foundry.documents.collections.Actors.registerSheet('wildsea', WildseaPlayerSheet, { types: ['player'] })
-  foundry.documents.collections.Actors.registerSheet('wildsea', WildseaShipSheet, { types: ['ship'] })
-  foundry.documents.collections.Actors.registerSheet('wildsea', WildseaAdversarySheet, { types: ['hazard'] })
+  foundry.documents.collections.Actors.registerSheet('wildsea', WildseaPlayerSheet, { types: ['player'], makeDefault: true })
+  foundry.documents.collections.Actors.registerSheet('wildsea', WildseaShipSheet, { types: ['ship'], makeDefault: true })
+  foundry.documents.collections.Actors.registerSheet('wildsea', WildseaAdversarySheet, { types: ['hazard'], makeDefault: true })
 
   foundry.documents.collections.Items.unregisterSheet('core', foundry.appv1.sheets.ItemSheet)
   foundry.documents.collections.Items.registerSheet('wildsea', WildseaAspectSheet, {
