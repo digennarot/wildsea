@@ -1,5 +1,10 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v1.0.2
+
+- Fix player character sheet interactivity and click listeners for tracks, mires, items, and rolls
+- Fix nested form structure in player sheet template
+
 ## v1.0.1
 
 - Fix syntax error in actor sheet preventing character sheet from rendering

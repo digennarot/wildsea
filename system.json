@@ -19,7 +19,7 @@
       "discord": "Mutex"
     }
   ],
-  "version": "1.0.1",
+  "version": "1.0.2",
   "url": "https://github.com/digennarot/wildsea",
   "manifest": "https://raw.githubusercontent.com/digennarot/wildsea/refs/heads/main/system.json",
   "download": "https://github.com/digennarot/wildsea/releases/latest/download/wildsea-v14.zip",

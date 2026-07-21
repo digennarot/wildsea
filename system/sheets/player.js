@@ -1,24 +1,14 @@
 import { WILDSEA } from '../config.js'
 import { enrich, listToRows, clamp, clickModifiers } from '../helpers.js'
+import WildseaActorSheet from './actor.js'
 
-const { HandlebarsApplicationMixin } = foundry.applications.api
-const { ActorSheetV2 } = foundry.applications.sheets
-
-export default class WildseaPlayerSheet extends HandlebarsApplicationMixin(ActorSheetV2) {
+export default class WildseaPlayerSheet extends WildseaActorSheet {
   static DEFAULT_OPTIONS = {
     classes: ['wildsea', 'sheet', 'actor', 'player'],
     window: { resizable: true },
     tag: 'form',
     width: 1000,
     height: 750,
-    actions: {
-      increaseListTrack: WildseaPlayerSheet.prototype.increaseListTrack,
-      decreaseListTrack: WildseaPlayerSheet.prototype.decreaseListTrack,
-      increaseMireTrack: WildseaPlayerSheet.prototype.increaseMireTrack,
-      decreaseMireTrack: WildseaPlayerSheet.prototype.decreaseMireTrack,
-      addItem: WildseaPlayerSheet.prototype.addItem,
-      updateRoll: WildseaPlayerSheet.prototype.updateRoll
-    }
   }
 
   static get PARTS() {
@@ -29,9 +19,6 @@ export default class WildseaPlayerSheet extends HandlebarsApplicationMixin(Actor
 
   async _prepareContext(options) {
     const context = await super._prepareContext(options)
-    context.config = WILDSEA
-    context.showBurnTooltip = game.settings.get('wildsea', 'showBurnTooltip')
-    context.showAttributeTooltip = game.settings.get('wildsea', 'showAttributeTooltip')
     context.edgesList = listToRows(WILDSEA.edges, 3)
     context.skillsList = listToRows(WILDSEA.skills, 2)
     context.languagesList = listToRows(WILDSEA.languages, 2)
@@ -40,8 +27,6 @@ export default class WildseaPlayerSheet extends HandlebarsApplicationMixin(Actor
       item.system.enrichedDetails = await enrich(item.system.details)
     }
 
-    context.system = this.document.system
-
     const resources = this.document.itemTypes.resource
     for (const resourceType of WILDSEA.resourceTypes) {
       context.system[resourceType] = resources
@@ -49,7 +34,7 @@ export default class WildseaPlayerSheet extends HandlebarsApplicationMixin(Actor
         .sort((a, b) => (a.sort < b.sort ? -1 : 1))
     }
 
-    const milestones = this.document.system.milestones
+    const milestones = this.document.system.milestones || []
     for (const subtype of WILDSEA.milestoneSubtypes) {
       context.system[`milestone_${subtype}`] = milestones.filter(
         (m) => m.subtype === subtype,
@@ -71,6 +56,36 @@ export default class WildseaPlayerSheet extends HandlebarsApplicationMixin(Actor
     return context
   }
 
+  _onRender(context, options) {
+    super._onRender(context, options)
+    const html = this.element
+    if (this.isEditable) {
+      if (this.document.isOwner) {
+        // List tracks (edges, skills, languages)
+        html.querySelectorAll('.list-track .track').forEach((el) => {
+          el.addEventListener('click', this.increaseListTrack.bind(this))
+          el.addEventListener('contextmenu', this.decreaseListTrack.bind(this))
+        })
+
+        // Mire tracks
+        html.querySelectorAll('.mire .track').forEach((el) => {
+          el.addEventListener('click', this.increaseMireTrack.bind(this))
+          el.addEventListener('contextmenu', this.decreaseMireTrack.bind(this))
+        })
+
+        // Add item buttons (+)
+        html.querySelectorAll('.addItem').forEach((el) => {
+          el.addEventListener('click', this.addItem.bind(this))
+        })
+      }
+    }
+
+    // Roll clicks on edge/skill/language labels
+    html.querySelectorAll('.roll').forEach((el) => {
+      el.addEventListener('click', this.updateRoll.bind(this))
+    })
+  }
+
   async increaseListTrack(event) {
     event.preventDefault()
     const target = event.currentTarget
@@ -85,6 +100,7 @@ export default class WildseaPlayerSheet extends HandlebarsApplicationMixin(Actor
         break
       case 'language':
         this.adjustLanguage(data.itemId)
+        break
       default:
         break
     }
@@ -105,6 +121,7 @@ export default class WildseaPlayerSheet extends HandlebarsApplicationMixin(Actor
         break
       case 'language':
         this.adjustLanguage(data.itemId, -1)
+        break
       default:
         break
     }

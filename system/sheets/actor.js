@@ -30,8 +30,8 @@ export default class WildseaActorSheet extends HandlebarsApplicationMixin(ActorS
     if (this.isEditable) {
       if (this.document.isOwner) {
         // Item context menu
-        new ContextMenu(html, '.itemContextMenu', this.itemContextMenu)
-        new ContextMenu(html, '.slimContextMenu', this.slimContextMenu)
+        new ContextMenu($(html), '.itemContextMenu', this.itemContextMenu)
+        new ContextMenu($(html), '.slimContextMenu', this.slimContextMenu)
 
         // collapse aspects and temp tracks
         html.querySelectorAll('.item .itemContextMenu').forEach(el => el.addEventListener('click', this.collapseItem.bind(this)))
