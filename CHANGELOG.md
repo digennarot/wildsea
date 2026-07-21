@@ -1,5 +1,9 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v1.0.1
+
+- Fix syntax error in actor sheet preventing character sheet from rendering
+
 ## v0.2.1
 
 - Fix expanding dice tooltips

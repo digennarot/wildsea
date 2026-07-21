@@ -306,9 +306,6 @@ export default class WildseaActorSheet extends HandlebarsApplicationMixin(ActorS
     // No slide animation; toggle class directly
     // Call toggleVisibility after state change
     this.toggleVisibility(itemId);
-          this.toggleVisibility(itemId)
-        },
-      })
   }
 
   toggleVisibility(itemId) {
