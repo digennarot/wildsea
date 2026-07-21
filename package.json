@@ -2,6 +2,6 @@
   "name": "wildsea",
   "version": "1.0.0",
   "scripts": {
-    "build:zip": "powershell -Command \"Compress-Archive -Path .\\system\\* -DestinationPath .\\wildsea-v14.zip -Force\""
+    "build:zip": "powershell -Command \"Compress-Archive -Path system.json, template.json, wildsea.js, system, templates, styles, lang, assets, packs, LICENSE, README.md, CHANGELOG.md -DestinationPath .\\wildsea-v14.zip -Force\""
   }
 }
