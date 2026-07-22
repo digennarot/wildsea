@@ -12,7 +12,8 @@ export const renderDialog = async (
     buttons: [
       {
         action: 'yes',
-        label: `<i class="fas fa-check"></i> ${game.i18n.localize('wildsea.submit')}`,
+        icon: 'fa-solid fa-check',
+        label: game.i18n.localize('wildsea.submit'),
         default: true,
         callback: (event, button, dialog) => {
           // Provide jQuery-like array of the dialog element for backward compatibility with handler
@@ -21,7 +22,8 @@ export const renderDialog = async (
       },
       {
         action: 'cancel',
-        label: `<i class="fas fa-times"></i> ${game.i18n.localize('wildsea.cancel')}`,
+        icon: 'fa-solid fa-times',
+        label: game.i18n.localize('wildsea.cancel'),
         callback: () => ({ cancelled: true })
       }
     ]

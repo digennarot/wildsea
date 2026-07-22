@@ -1,5 +1,12 @@
 # The Wildsea (Unofficial) - FoundryVTT
 
+## v1.0.3
+
+- Fix DialogV2 button icon formatting so raw HTML tags are not rendered as plain text inside submit/cancel buttons
+- Fix crooked and uneven Edges, Skills, and Languages grid alignment by centering labels and tracks vertically
+- Refine clip-path polygon corners on inputs, buttons, and boxes to prevent text and input field cut-offs
+- Reorganize player sheet into a balanced 3-column layout
+
 ## v1.0.2
 
 - Fix player character sheet interactivity and click listeners for tracks, mires, items, and rolls

@@ -1,8 +1,8 @@
 <div class="flexrow spaced">
-  <div class="flexcol spaced">
-    <div class="flex flex0 flexrow spaced">
+  <div class="flexcol spaced flex1">
+    <div class="flex flex0 flexrow spaced align-center">
       <div class="flex0 img"><img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" /></div>
-      <div>
+      <div class="flex1">
         <input id="name" class="corners" type="text" name="name" value="{{actor.name}}" placeholder="{{localize "wildsea.name"}}" />
       </div>
     </div>
@@ -11,13 +11,13 @@
     {{> "systems/wildsea/templates/sheets/player/drives.hbs"}}
     {{> "systems/wildsea/templates/sheets/player/mires.hbs" type="mires"}}
   </div>
-  <div class="flexcol spaced">
+  <div class="flexcol spaced flex2">
     {{> "systems/wildsea/templates/sheets/player/edges.hbs"}}
     {{> "systems/wildsea/templates/sheets/player/skills.hbs"}}
     {{> "systems/wildsea/templates/sheets/player/languages.hbs"}}
     {{> "systems/wildsea/templates/sheets/player/resources.hbs"}}
   </div>
-  <div class="flexcol spaced">
+  <div class="flexcol spaced flex1">
     {{> "systems/wildsea/templates/shared/aspects.hbs"
       aspects=aspects
       title=(localize "wildsea.aspects")
@@ -27,5 +27,4 @@
       title=(localize "wildsea.temporaryTracks")
       type="temporaryTrack"}}
   </div>
-
 </div>

@@ -114,6 +114,15 @@ a.inline-roll.unstyled {
 .flex0 {
   flex: 0 !important;
 }
+.flex1 {
+  flex: 1;
+}
+.flex2 {
+  flex: 2;
+}
+.flex3 {
+  flex: 3;
+}
 .flex4 {
   flex: 4;
 }
@@ -150,7 +159,7 @@ a.inline-roll.unstyled {
 .wildsea .dialog .dialog-buttons button {
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
-  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
+  clip-path: polygon(0 4px, 4px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 8px) 100%, 0 100%);
   border: none;
   border-radius: 0;
   background: #e2e2df;
@@ -180,7 +189,7 @@ a.inline-roll.unstyled {
 .wildsea form input[type='time'],
 .wildsea form input[type='search'],
 .wildsea form select {
-  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
+  clip-path: polygon(0 4px, 4px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 8px) 100%, 0 100%);
   background: #e2e2df;
   border: none;
   padding: 0 0.5rem;
@@ -569,7 +578,7 @@ a.inline-roll.unstyled {
   cursor: grab;
 }
 .wildsea .corners {
-  clip-path: polygon(0 0.5rem, 0.5rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1.5rem) 100%, 0 100%);
+  clip-path: polygon(0 4px, 4px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 8px) 100%, 0 100%);
 }
 .wildsea .rounded {
   border-radius: 0.5rem;
@@ -605,7 +614,21 @@ a.inline-roll.unstyled {
   margin: 0 !important;
 }
 .wildsea .list-track {
-  margin-bottom: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 0.35rem;
+}
+.wildsea .list-track label {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-bottom: 0.15rem;
+  line-height: 1.1rem;
+}
+.wildsea .list-track .track {
+  justify-content: center;
 }
 .wildsea .prosemirror menu .pm-dropdown > ul li::before {
   background: none !important;

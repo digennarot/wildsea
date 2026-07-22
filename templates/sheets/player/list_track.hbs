@@ -1,8 +1,8 @@
-<div class="flexrow list-track">
-  <label>
+<div class="flexcol list-track align-center">
+  <label class="center">
     <a class="roll" data-type="{{type}}" data-value="{{id}}" {{#if @root.showAttributeTooltip}} data-tooltip="{{localize (concat "wildsea.TOOLTIPS." id)}}" {{/if}}>{{name}}</a>
   </label>
-  <div class="flex0">
+  <div class="flex0 center">
     {{> "systems/wildsea/templates/shared/track.hbs" max=max value=value type=type}}
   </div>
 </div>
