@@ -1,0 +1,46 @@
+yaml
+name: CI Build & Test
+
+# Controls when the workflow runs
+on:
+  push:
+    branches: [ main ] # Runs only when code is pushed to the 'main' branch
+  pull_request:
+    branches: [ main ] # Runs when a pull request is opened against 'main'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Specifies the virtual machine environment (Linux)
+
+    steps:
+      # 1. Checkout the repository code
+      - name Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Set up the required runtime environment (Example for Node.js)
+      - name Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Use your project's required Node version
+
+      # 3. Install dependencies
+      - name Install dependencies
+        run: npm install
+
+      # 4. Run the build command (This is where you compile or process actor.js)
+      # Replace this with your actual build command (e.g., if you use a specific tool like Webpack, Babel, etc.)
+      - name Build Project
+        run: |
+          echo "Starting project build..."
+          npm run build # <-- Change 'npm run build' to whatever command compiles your code
+
+      # 5. Run tests (Optional but highly recommended)
+      - name Run Tests
+        run: npm test # <-- Change this if you have a specific test script
+
+      # 6. Archive the build artifacts (Useful for creating the zip file later)
+      - name Archive Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: wildsea-build-${{ github.sha }} # Name of the artifact
+          path: ./dist/ # <-- Change './dist/' to the folder where your final build output is located (e.g., 'build/')
